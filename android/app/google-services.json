@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1030338473433",
+    "firebase_url": "https://radar-2deb1.firebaseio.com",
+    "project_id": "radar-2deb1",
+    "storage_bucket": "radar-2deb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030338473433:android:9d4f731153738cf2aa7dc8",
+        "android_client_info": {
+          "package_name": "com.radar.pubg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030338473433-9u0jlkk4qc1tgrsd1m7chuetr4d7su53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radar.pubg",
+            "certificate_hash": "41ac98142c088c3c0be9673de717cb518292f37c"
+          }
+        },
+        {
+          "client_id": "1030338473433-hgs7g7893f9s64un8lf7frukalii6hb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSb-JS6dTP9CCzlIZKHTOOi3Cu-zYzppw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030338473433-hgs7g7893f9s64un8lf7frukalii6hb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
