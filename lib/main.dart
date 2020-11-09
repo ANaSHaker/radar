@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
             initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
             routes: {
               '/': (context) => Splash(),
-              "first": (context) => IntroScreen(),
+              "first": (context) => Splash(),
 
             },
 

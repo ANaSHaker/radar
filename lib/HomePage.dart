@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeNews()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeNews()));
 
                     },
                     child: Container(
@@ -199,7 +199,8 @@ class _HomePageState extends State<HomePage> {
                           border: Border.all(color: Color(0xff4E008A),width: 8)
                       ),
                     ),
-                  )
+                  ),
+
                 ],
               ),
               Row(
@@ -249,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>VPN()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>VPN()));
                     },
                     child: Container(
                       height: 150,
@@ -264,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CLEAR()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CLEAR()));
                     },                  child: Container(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

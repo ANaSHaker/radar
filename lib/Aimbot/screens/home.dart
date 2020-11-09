@@ -1,5 +1,6 @@
 import 'package:pubg/Aimbot/models/post.dart';
 import 'package:flutter/material.dart';
+import '../../HomePage.dart';
 import '../../myDrawer.dart';
 import 'add_post.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -34,9 +35,14 @@ class _HomeAimbotState extends State<HomeAimbot> {
         backgroundColor: Color(0xff4E008A),
         title:Text("اعدادات الايمبوت",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
         centerTitle: true,
-        leading:             Image.asset("assets/logo.png",color: Colors.white,),
+        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
+          onPressed:(){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+          } ,),
 
         actions: [
+          Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
             builder: (context) => FlatButton(
               child :  Image.asset("assets/list.png",),
@@ -91,13 +97,12 @@ class _HomeAimbotState extends State<HomeAimbot> {
                                      itemCount:postsList.length,
                                      padding: EdgeInsets.all(2.0),
                                      itemBuilder: (BuildContext context, int index) {
-                                       return
-                                         Padding(
+                                       return Padding(
                                            padding: const EdgeInsets.all(8.0),
                                            child: Container(
                                              alignment: Alignment.center,
                                              decoration: BoxDecoration(
-                                                 color: Colors.white,
+                                                 color: Color(0xff4E008A),
                                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40),bottomRight:Radius.circular(40) )
                                              ),
                                              child:ListTile(
@@ -131,7 +136,7 @@ class _HomeAimbotState extends State<HomeAimbot> {
                                                title: Text(
                                                  postsList[index].title,
                                                  style: TextStyle(
-                                                     fontSize: 18.0, fontWeight: FontWeight.bold),
+                                                     fontSize: 18.0, fontWeight: FontWeight.bold,color: Colors.white),
                                                  textAlign: TextAlign.center,
                                                ),
 

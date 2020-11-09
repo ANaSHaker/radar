@@ -2,11 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pubg/webView.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Chat.dart';
 import 'HomePage.dart';
 import 'Login.dart';
 import 'news/screens/home.dart';
+
+_launchWhatsApp() async {
+String message = 'السلام عليكم';
+var whatsappUrl = "whatsapp://send?phone=966509977750&text=$message";
+if (await canLaunch(whatsappUrl)) {
+await launch(whatsappUrl);
+} else {
+throw 'Could not launch $whatsappUrl';
+}
+}
 
 class myDrawer extends StatefulWidget {
   @override
@@ -24,7 +35,7 @@ class _myDrawerState extends State<myDrawer> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Image.asset("assets/logo.png",color: Colors.white,height: 250,width: 300,),
+            child: Image.asset("assets/logo.png",color: Colors.white,height: 300,width: 350,),
             decoration: BoxDecoration(
               color:  Color(0xff4E008A),
             ),
@@ -41,7 +52,7 @@ class _myDrawerState extends State<myDrawer> {
             title: Text('الاخبار',style: TextStyle(color: Color(0xff4E008A),fontWeight: FontWeight.bold,fontSize: 17),),
             trailing: Image.asset("assets/news.png",color: Color(0xff4E008A),width: 30,),
             onTap: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeNews()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeNews()));
 
             },
           ),
@@ -59,10 +70,8 @@ class _myDrawerState extends State<myDrawer> {
             title: Text('تواصل معنا',style: TextStyle(color: Color(0xff4E008A),fontWeight: FontWeight.bold,fontSize: 17),),
             trailing: Icon(Icons.people,color: Color(0xff4E008A)),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>   webview(
-                pageTitle: "رادار شارب شوتر",
-                pageUrl: "https://mobile.facebook.com/ali.vep.96?_rdc=1&_rdr",
-              )));
+              _launchWhatsApp();
+
             },
           ),
           ListTile(

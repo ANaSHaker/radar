@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'HomePage.dart';
 import 'myDrawer.dart';
 
 _launchWhatsApp() async {
@@ -58,15 +59,20 @@ class _AboutPageState extends State<AboutPage> {
         backgroundColor: Color(0xff4E008A),
         title:Text("Change ID",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
         centerTitle: true,
-        leading:             Image.asset("assets/logo.png",color: Colors.white,),
+        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
+          onPressed:(){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+          } ,),
 
         actions: [
-         Builder(
-                builder: (context) => FlatButton(
-                  child :  Image.asset("assets/list.png",),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                ),
-              ),
+          Image.asset("assets/logo.png",color: Colors.white,),
+          Builder(
+            builder: (context) => FlatButton(
+              child :  Image.asset("assets/list.png",),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+            ),
+          ),
         ],
 
       ),

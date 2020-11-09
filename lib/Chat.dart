@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_tawk/flutter_tawk.dart';
 
+import 'HomePage.dart';
 import 'myDrawer.dart';
 
 
@@ -18,9 +19,14 @@ class _chatState extends State<chat> {
         backgroundColor: Color(0xff4E008A),
         title:Text("الدعم الفني",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
         centerTitle: true,
-        leading:             Image.asset("assets/logo.png",color: Colors.white,),
+        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
+          onPressed:(){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+          } ,),
 
         actions: [
+          Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
             builder: (context) => FlatButton(
               child :  Image.asset("assets/list.png",),

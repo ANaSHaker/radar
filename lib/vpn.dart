@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'HomePage.dart';
 import 'myDrawer.dart';
 
 
@@ -40,9 +43,14 @@ class _VPNState extends State<VPN> {
         backgroundColor: Color(0xff4E008A),
         title:Text("VPN VIP",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
         centerTitle: true,
-        leading:             Image.asset("assets/logo.png",color: Colors.white,),
+        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
+          onPressed:(){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+          } ,),
 
         actions: [
+        Image.asset("assets/logo.png",color: Colors.white,),
          Builder(
                 builder: (context) => FlatButton(
                   child :  Image.asset("assets/list.png",),
@@ -62,7 +70,7 @@ class _VPNState extends State<VPN> {
               width: 300,
               child: Center(child: Text("VPN VIP",style: TextStyle(color: Colors.white,fontSize: 26,fontWeight: FontWeight.bold),)),
               decoration: BoxDecoration(
-                  gradient: LinearGradient(colors:[Colors.pinkAccent,Color(0xff4E008A)], ),//RadialGradient(colors: [Color(0xffCBBFD5),Color(0xff4E008A)],),
+                  gradient:  LinearGradient(colors:[Colors.pinkAccent,Color(0xff4E008A)], ),//RadialGradient(colors: [Color(0xffCBBFD5),Color(0xff4E008A)],),
                   borderRadius: BorderRadius.circular(150),
                   border: Border.all(color: Colors.white,width: 8)
               ),

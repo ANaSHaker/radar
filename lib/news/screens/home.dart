@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pubg/news/models/post.dart';
 import 'package:pubg/news/screens/viewPost.dart';
+import '../../HomePage.dart';
 import '../../myDrawer.dart';
 import 'add_post.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -50,11 +51,7 @@ class _HomeNewsState extends State<HomeNews> {
   }
 
 
-  @override
-  void dispose() {
-    startTimer();
-    super.dispose();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,15 +59,20 @@ class _HomeNewsState extends State<HomeNews> {
         backgroundColor: Color(0xff4E008A),
         title:Text("الاخبار",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
         centerTitle: true,
-        leading:             Image.asset("assets/logo.png",color: Colors.white,),
+        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
+          onPressed:(){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+          } ,),
 
         actions: [
-         Builder(
-                builder: (context) => FlatButton(
-                  child :  Image.asset("assets/list.png",),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                ),
-              ),
+          Image.asset("assets/logo.png",color: Colors.white,),
+          Builder(
+            builder: (context) => FlatButton(
+              child :  Image.asset("assets/list.png",),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+            ),
+          ),
         ],
 
       ),
@@ -108,7 +110,7 @@ class _HomeNewsState extends State<HomeNews> {
                                         height: 80,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: Color(0xff4E008A),
                                             borderRadius: BorderRadius.circular(20)
                                         ),
                                         child: ListTile(
@@ -121,7 +123,7 @@ class _HomeNewsState extends State<HomeNews> {
                                               Text(
                                                 postsList[index].title,
                                                 style: TextStyle(
-                                                    color: Colors.black,
+                                                    color: Colors.white,
                                                     fontSize: 14.0, fontWeight: FontWeight.bold),
                                                 textAlign: TextAlign.center,),
                                               Container(
@@ -129,7 +131,7 @@ class _HomeNewsState extends State<HomeNews> {
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xff4e008a),
+                                                    color: Color(0xffCBBFD5),
                                                     borderRadius: BorderRadius.circular(10)
                                                 ),      child:postsList[index].body == "safe" ? Text(postsList[index].body, style: TextStyle(
                                                   color:Colors.greenAccent,

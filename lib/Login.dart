@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'HomePage.dart';
+import 'myApp.dart';
 
 
 // ignore: camel_case_types
@@ -50,7 +51,7 @@ class _loginState extends State<login> {
                         height: hp(2),
                       ),
 
-                      Image.asset("assets/white.png",height: 176,color: Colors.white,),
+                      Image.asset("assets/header.png",height: 176,),
                       Text("رادار ببجي",style: GoogleFonts.cairo(
                           textStyle: TextStyle(
                               fontSize: 22,
@@ -206,6 +207,7 @@ class _loginState extends State<login> {
     if (formState.validate()) {
       formState.save();
       try {
+
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => HomePage()));
       } catch (e) {
