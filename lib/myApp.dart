@@ -1,8 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pubg/webView.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'Chat.dart';
+import 'HomePage.dart';
 
 String email;
-
+_launchWhatsApp() async {
+  String message = 'السلام عليكم';
+  var whatsappUrl = "whatsapp://send?phone=966509977750&text=$message";
+  if (await canLaunch(whatsappUrl)) {
+    await launch(whatsappUrl);
+  } else {
+    throw 'Could not launch $whatsappUrl';
+  }
+}
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 class myApp extends StatefulWidget {
 
 
@@ -13,21 +33,42 @@ class myApp extends StatefulWidget {
 class _myAppState extends State<myApp> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Color(0xff4E008A),
-      title:Text('Logged in as $email ',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
-      centerTitle: true,
-      leading:             Image.asset("assets/logo.png",color: Colors.white,),
+    return Container(
+      height: 60,
+      color: Colors.white,
+      child: BottomAppBar(
+        elevation: 20.0,
 
-      actions: [
-       Builder(
-                builder: (context) => FlatButton(
-                  child :  Image.asset("assets/list.png",),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                ),
-              ),
-      ],
 
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+
+            FlatButton(
+                child:  Image.asset("assets/1.png",width:55,),
+                onPressed: (){
+                  launchURL("https://storpubg.com/category/GZaNw");
+
+                }
+            ),
+            FlatButton(
+                child:Image.asset("assets/2.png",width:60,),
+                onPressed: (){
+                  launchURL("https://storpubg.com/category/dEyyP");
+
+                }
+            ),
+            FlatButton(
+                child:Image.asset("assets/3.png",width:45,),
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
+                }
+            ),
+
+          ],
+        ),
+      ),
     );
   }
 }

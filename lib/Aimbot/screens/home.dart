@@ -1,6 +1,7 @@
 import 'package:pubg/Aimbot/models/post.dart';
 import 'package:flutter/material.dart';
 import '../../HomePage.dart';
+import '../../myApp.dart';
 import '../../myDrawer.dart';
 import 'add_post.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -33,29 +34,27 @@ class _HomeAimbotState extends State<HomeAimbot> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff4E008A),
-        title:Text("اعدادات الايمبوت",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
+        title:Text("اعدادات الايمبوت",style: TextStyle(color: Colors.white,fontSize:20),),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
-          onPressed:(){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
-
-          } ,),
+        leading:             Image.asset("assets/logo.png",color: Colors.white,),
 
         actions: [
-          Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
-            builder: (context) => FlatButton(
-              child :  Image.asset("assets/list.png",),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-            ),
-          ),
+                builder: (context) => FlatButton(
+                  child :  Icon(Icons.list,color: Colors.white,size: 30,),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
         ],
 
       ),
+      bottomNavigationBar: myApp(),
       endDrawer:myDrawer() ,
 
       body: Container(
-        color: Color(0xffCBBFD5),
+         decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter,end: Alignment.bottomCenter,colors: [Color(0xffFF375E),Color(0xff4E008A),])
+        ),
 
 
         child: Padding(

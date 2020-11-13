@@ -18,7 +18,13 @@ await launch(whatsappUrl);
 throw 'Could not launch $whatsappUrl';
 }
 }
-
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 class myDrawer extends StatefulWidget {
   @override
   _myDrawerState createState() => _myDrawerState();
@@ -58,12 +64,10 @@ class _myDrawerState extends State<myDrawer> {
           ),
           ListTile(
             title: Text('موقعنا',style: TextStyle(color: Color(0xff4E008A),fontWeight: FontWeight.bold,fontSize: 17),),
-            trailing: Image.asset("assets/websiteDrawer.png",color: Color(0xff4E008A)),
+            trailing: Image.asset("assets/websiteIcon.png",height: 30,),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>   webview(
-                pageTitle: "STOR PUBG",
-                pageUrl: "https://storpubg.com/",
-              )));
+              launchURL("https://storpubg.com/");
+
             },
           ),
           ListTile(
@@ -76,7 +80,7 @@ class _myDrawerState extends State<myDrawer> {
           ),
           ListTile(
             title: Text('الدعم الفني',style: TextStyle(color: Color(0xff4E008A),fontWeight: FontWeight.bold,fontSize: 17),),
-            trailing: Image.asset("assets/SettingDrawer.png",color: Color(0xff4E008A)),
+            trailing: Image.asset("assets/SettingDrawer.png",height: 25,),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>chat()));
 

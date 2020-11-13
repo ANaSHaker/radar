@@ -14,8 +14,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 
 import 'HomePage.dart';
-import 'Splash.dart';
-import 'intro.dart';
+import 'Login.dart';
 
 
 
@@ -61,7 +60,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarColor: Color(0xffFF375E),
+        ));
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -75,9 +77,13 @@ class _MyAppState extends State<MyApp> {
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
       },
+
+
     );
+
     _firebaseMessaging.requestNotificationPermissions(
         const IosNotificationSettings(sound: true, badge: true, alert: true));
+
   }
 
   @override
@@ -98,8 +104,8 @@ class _MyAppState extends State<MyApp> {
             theme: theme,
             initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
             routes: {
-              '/': (context) => Splash(),
-              "first": (context) => Splash(),
+              '/': (context) => HomePage(),
+              "first": (context) => HomePage(),
 
             },
 

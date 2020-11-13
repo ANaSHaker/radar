@@ -14,6 +14,7 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'HomePage.dart';
+import 'myApp.dart';
 import 'myDrawer.dart';
 
 _launchWhatsApp() async {
@@ -57,34 +58,39 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff4E008A),
-        title:Text("Change ID",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
+        title:Text("Change ID",style: TextStyle(color: Colors.white,fontSize:20),),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
-          onPressed:(){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
-
-          } ,),
+        leading:             Image.asset("assets/logo.png",color: Colors.white,),
 
         actions: [
-          Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
-            builder: (context) => FlatButton(
-              child :  Image.asset("assets/list.png",),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-            ),
-          ),
+                builder: (context) => FlatButton(
+                  child :  Icon(Icons.list,color: Colors.white,size: 30,),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
         ],
 
       ),
+      bottomNavigationBar: myApp(),
       endDrawer:myDrawer() ,
 
       body: Container(
-        color: Color(0xffCBBFD5),
-        child: Center(
+            decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter,end: Alignment.bottomCenter,colors: [Color(0xffFF375E),Color(0xff4E008A),])
+        ),    child: Center(
           child : Container(
             height: 300,
             width: 300,
-            child: Center(child: Text("Change ID Now",style: TextStyle(color: Colors.white,fontSize: 26,fontWeight: FontWeight.bold),)),
+            child: Center(child:  Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text("START NOW",style: TextStyle(color: Colors.white,fontSize: 26,fontWeight: FontWeight.bold),),
+                Text("قريبا",style: TextStyle(color: Colors.white,fontSize: 18),),
+
+                    ]
+                )),
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors:[Colors.pinkAccent,Color(0xff4E008A)], ),//RadialGradient(colors: [Color(0xffCBBFD5),Color(0xff4E008A)],),
                 borderRadius: BorderRadius.circular(150),

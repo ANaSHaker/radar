@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pubg/myApp.dart';
 import 'package:pubg/news/models/post.dart';
 import 'package:pubg/news/screens/viewPost.dart';
 import '../../HomePage.dart';
@@ -57,29 +58,28 @@ class _HomeNewsState extends State<HomeNews> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff4E008A),
-        title:Text("الاخبار",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
+        title:Text("الاخبار",style: TextStyle(color: Colors.white,fontSize:20),),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
-          onPressed:(){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
-
-          } ,),
+        leading:             Image.asset("assets/logo.png",color: Colors.white,),
 
         actions: [
-          Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
-            builder: (context) => FlatButton(
-              child :  Image.asset("assets/list.png",),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-            ),
-          ),
+                builder: (context) => FlatButton(
+                  child :  Icon(Icons.list,color: Colors.white,size: 30,),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
         ],
 
       ),
+      bottomNavigationBar: myApp(),
       endDrawer:myDrawer() ,
 
       body: Container(
-        color: Color(0xffCBBFD5),
+         decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter,end: Alignment.bottomCenter,colors: [Color(0xffFF375E),Color(0xff4E008A),])
+        ),
+
         child: ListView(
           children: <Widget>[
             Visibility(
@@ -88,10 +88,7 @@ class _HomeNewsState extends State<HomeNews> {
                 child: CircularProgressIndicator(),
               ),
             ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(child: Text("تتحدث اخبار الامان كل $_start ثانيه",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
-        ),
+
 
 
                 Visibility(
@@ -100,6 +97,10 @@ class _HomeNewsState extends State<HomeNews> {
                       height:750,
                       child: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(child: Text("تتحدث اخبار الامان كل $_start ثانيه",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
+                          ),
                           Flexible(
                               child: FirebaseAnimatedList(
                                   query: _database.reference().child('posts'),
@@ -131,7 +132,7 @@ class _HomeNewsState extends State<HomeNews> {
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xffCBBFD5),
+                                                    color: Colors.white,
                                                     borderRadius: BorderRadius.circular(10)
                                                 ),      child:postsList[index].body == "safe" ? Text(postsList[index].body, style: TextStyle(
                                                   color:Colors.greenAccent,

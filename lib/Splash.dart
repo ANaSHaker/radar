@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_responsive_screen/flutter_responsive_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'HomePage.dart';
 import 'Login.dart';
 
 
@@ -24,7 +25,7 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
         _animationController);
 
     _animationController.forward().whenComplete(() {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>login()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
     });
   }
 

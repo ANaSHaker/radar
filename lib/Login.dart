@@ -16,6 +16,15 @@ class login extends StatefulWidget {
 
 // ignore: camel_case_types
 class _loginState extends State<login> {
+
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _email, _password;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -26,8 +35,8 @@ class _loginState extends State<login> {
     final Function hp = Screen(MediaQuery.of(context).size).hp;
     return Scaffold(
       backgroundColor: Color(0xff4E008A),
-      resizeToAvoidBottomPadding: false,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
@@ -47,12 +56,11 @@ class _loginState extends State<login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
 
-                      SizedBox(
-                        height: hp(2),
-                      ),
+
+                      SizedBox(height: hp(9)),
 
                       Image.asset("assets/header.png",height: 176,),
-                      Text("رادار ببجي",style: GoogleFonts.cairo(
+                      /*Text("رادار ببجي",style: GoogleFonts.cairo(
                           textStyle: TextStyle(
                               fontSize: 22,
                               color: Colors.white,
@@ -63,7 +71,7 @@ class _loginState extends State<login> {
                       Text("storpubg.com",style:TextStyle(
                           fontSize: 12,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold)),
+                          fontWeight: FontWeight.bold)),*/
 
                       SizedBox(height: hp(7)),
                       Form(
@@ -75,7 +83,7 @@ class _loginState extends State<login> {
                               padding: const EdgeInsets.only(left:24.0),
                               child: Text("Email",style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold
                               ),textAlign: TextAlign.left,),
                             ),
@@ -90,20 +98,21 @@ class _loginState extends State<login> {
                                 filled: true,
                                 fillColor: Colors.white,
                                 prefixIcon: Icon(Icons.email,color: Color(0xff4E008A)),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
+
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderRadius: BorderRadius.circular(100.0),
                                   borderSide: BorderSide(
                                     color: Colors.white,
                                     width: 2.0,
                                   ),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
 
+                                ),
 
                               ),
 
@@ -121,7 +130,7 @@ class _loginState extends State<login> {
                               padding: const EdgeInsets.only(left:24.0),
                               child: Text("Password",style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold
                               ),textAlign: TextAlign.left,),
                             ),
@@ -131,21 +140,24 @@ class _loginState extends State<login> {
                               style: TextStyle(
                                 color: Colors.black,
                               ),
-                              obscureText: true,
+                              obscureText: _obscureText,
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
-                                  prefixIcon: Icon(Icons.lock,color: Color(0xff4E008A)),
+                                  prefixIcon: Icon(Icons.lock,color: Color(0xff4E008A),
+                                  ),
+                                 suffixIcon: IconButton(icon: Icon(_obscureText == true ? Icons.visibility : Icons.visibility_off),
+                                 onPressed: _toggle,),
 
                                  focusedBorder: OutlineInputBorder(
-                                   borderRadius: BorderRadius.circular(25.0),
+                                   borderRadius: BorderRadius.circular(100.0),
                                    borderSide: BorderSide(
                                      color: Colors.white,
                                    ),
 
                                  ),
                                  enabledBorder: OutlineInputBorder(
-                                   borderRadius: BorderRadius.circular(25.0),
+                                   borderRadius: BorderRadius.circular(100.0),
                                    borderSide: BorderSide(
                                      color: Colors.white,
                                      width: 2.0,
@@ -167,21 +179,27 @@ class _loginState extends State<login> {
                               height: hp(10),
                             ),
                             Center(
-                              child: Container(
+                              child: Card(
+                                elevation: 20,
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                ),
+                                child: Container(
 
-                                color: Colors.transparent,
-                                width: 180,
-                                height: hp(7),
-                                child: FlatButton(
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius: new BorderRadius.circular(25.0),
-                                  ),
-                                  onPressed: access,
-                                  color: Colors.white,
-                                  child: Text(
-                                    "LOG IN",
-                                    style: TextStyle(
-                                        color: Color(0xff4E008A), fontSize: 20,fontWeight: FontWeight.bold),
+                                  color: Colors.transparent,
+                                  width: 180,
+                                  height: hp(7),
+                                  child: FlatButton(
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(25.0),
+                                    ),
+                                    onPressed: access,
+                                    color: Colors.white,
+                                    child: Text(
+                                      "LOG IN",
+                                      style: TextStyle(
+                                          color: Color(0xff4E008A), fontSize: 20,fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),

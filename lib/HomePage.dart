@@ -10,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pubg/ID.dart';
 import 'package:pubg/webView.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Aimbot/screens/home.dart';
 import 'Chat.dart';
@@ -17,10 +18,19 @@ import 'Profile.dart';
 import 'Videos/screens/home.dart';
 import 'Login.dart';
 import 'clearData.dart';
+import 'myApp.dart';
 import 'myDrawer.dart';
 import 'news/screens/home.dart';
 import 'vpn.dart';
 
+
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 class HomePage extends   StatefulWidget {
 
   @override
@@ -70,221 +80,192 @@ class _HomePageState extends State<HomePage> {
       },
 
       child: Scaffold(
-          backgroundColor:  Color(0xffCBBFD5),
           appBar: AppBar(
             backgroundColor: Color(0xff4E008A),
-            title:Text("الرئيسية",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
+            title:Text("الرئيسية",style: TextStyle(color: Colors.white,fontSize:20),),
             centerTitle: true,
             leading:             Image.asset("assets/logo.png",color: Colors.white,),
 
             actions: [
               Builder(
                 builder: (context) => FlatButton(
-                  child :  Image.asset("assets/list.png",),
+                  child :  Icon(Icons.list,color: Colors.white,size: 30,),
                   onPressed: () => Scaffold.of(context).openEndDrawer(),
                 ),
               ),
             ],
 
           ),
-          /*bottomNavigationBar: Container(
-          height: 70,
-          color: Colors.white,
-          child: BottomAppBar(
-            elevation: 20.0,
+          bottomNavigationBar: myApp(),
+          endDrawer:myDrawer() ,
 
+          body: Container(
+             decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter,end: Alignment.bottomCenter,colors: [Color(0xffFF375E),Color(0xff4E008A),])
+        ),
 
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                FlatButton(
-                   child: Image.asset("assets/websiteIcon.png",),
-                    onPressed: (){
-                    }
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeNews()));
+
+                      },
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        child: Image.asset("assets/news.png"),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeAimbot()));
+                      },
+                      child: Container(
+                        child: Image.asset("assets/input.png"),
+
+                        height: 140,
+                        width: 140,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                FlatButton(
-                    child: Image.asset("assets/contactIcon.png",),
-                    onPressed: (){
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CLEAR()));
+                      },                  child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Image.asset("assets/clear.png",),
+                      ),
+
+                      height: 140,
+                      width: 140,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(color: Color(0xff4E008A),width: 12)
+                      ),
+                    ),
+                    ),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeVideo()));
+
+                      },
+                      child: Container(
+                        child: Image.asset("assets/video.png"),
+
+                        height: 140,
+                        width: 140,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    ),
+
+                  ],
                 ),
-                FlatButton(
-                    child: Image.asset("assets/supportIcon.png",),
-                    onPressed: (){
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>chat()));
+
+                      },
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        child: Image.asset("assets/chat.png"),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){
+
+                        launchURL("https://storpubg.com/");
+
+                      },
+                      child: Container(
+                        child: Image.asset("assets/store.png",),
+
+                        height: 140,
+                        width: 140,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                FlatButton(
-                    child: Image.asset("assets/homeIcon.png",),
-                    onPressed: (){
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>VPN()));
+                      },
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        child: Center(child: Text(" VPN \n VIP",style: TextStyle(color: Color(0xff4E008A),fontSize: 26,fontWeight: FontWeight.bold),)),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    ),
+
+                    InkWell(
+                      onTap: (){        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AboutPage()));
+                      },
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        child: Image.asset("assets/id.png"),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(color: Color(0xff4E008A),width: 12)
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
 
               ],
             ),
-          ),
-        ),*/
-          endDrawer:myDrawer() ,
-
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeNews()));
-
-                    },
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset("assets/news.png"),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeAimbot()));
-                    },
-                    child: Container(
-                      child: Image.asset("assets/input.png"),
-
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  InkWell(
-                    onTap: (){        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AboutPage()));
-                    },
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset("assets/id.png"),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeVideo()));
-
-                    },
-                    child: Container(
-                      child: Image.asset("assets/video.png"),
-
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>chat()));
-
-                    },
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset("assets/chat.png"),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>   webview(
-                        pageTitle: "STOR PUBG",
-                        pageUrl: "https://storpubg.com/",
-                      )));
-                    },
-                    child: Container(
-                      child: Image.asset("assets/store.png",),
-
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>VPN()));
-                    },
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      child: Center(child: Text(" VPN \n VIP",style: TextStyle(color: Color(0xff4E008A),fontSize: 26,fontWeight: FontWeight.bold),)),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CLEAR()));
-                    },                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset("assets/clear.png",),
-                    ),
-
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Color(0xff4E008A),width: 8)
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
-            ],
           )
 
       ),

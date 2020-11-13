@@ -22,7 +22,7 @@ class _webviewState extends State<webview> {
       url: widget.pageUrl,
       appBar: AppBar(
         backgroundColor: Color(0xff4E008A),
-        title:Text(widget.pageTitle,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:24),),
+        title:Text(widget.pageTitle,style: TextStyle(color: Colors.white,fontSize:20),),
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.arrow_back),color: Colors.white,
           onPressed:(){
@@ -33,11 +33,11 @@ class _webviewState extends State<webview> {
         actions: [
           Image.asset("assets/logo.png",color: Colors.white,),
           Builder(
-            builder: (context) => FlatButton(
-              child :  Image.asset("assets/list.png",),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-            ),
-          ),
+                builder: (context) => FlatButton(
+                  child :  Icon(Icons.list,color: Colors.white,size: 30,),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
         ],
 
       ),
